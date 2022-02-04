@@ -2,15 +2,19 @@ package main
 import (
     "fmt"
     "runtime"
-    //"os"
+     "github.com/spf13/viper"
 )
-func main(){
-		/*
-		cwd,err:= os.Getwd()
-		var home string = os.Getenv("HOME")
-		var promptSym string = "$"
-		*/
+func main() {
 		var os string = runtime.GOOS
+		viper.SetConfigName("dotshuttle") // name of config file (without extension)
+		viper.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
+		viper.AddConfigPath(".")   // path to look for the config file in
+		viper.AddConfigPath("$HOME/.appname")  // call multiple times to add many search paths
+		err := viper.ReadInConfig() // Find and read the config file
+		viper.SetDefault("promptSymbol", "$")
+		if err != nil { // Handle errors reading the config file
+				fmt.Errorf("NO CONFIG	: %w \n", err)
+		}	
 		switch os {
 				
 		case "windows":
@@ -49,6 +53,6 @@ func linuxPrompt() {
 		prompt()
 }
 func prompt() {
-	fmt.Println(osLogo)
+	fmt.Println(osLogo + " "+viper.GetString("promptSymbol"))
 
 }
