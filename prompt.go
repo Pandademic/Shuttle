@@ -2,12 +2,15 @@ package main
 import (
     "fmt"
     "runtime"
+    //"os"
 )
 func main(){
-		cwd := os.Getwd()
-		home := os.Getenv("HOME")
-		promptSym := "$"
-		os := runtime.GOOS
+		/*
+		cwd,err:= os.Getwd()
+		var home string = os.Getenv("HOME")
+		var promptSym string = "$"
+		*/
+		var os string = runtime.GOOS
 		switch os {
 				
 		case "windows":
@@ -32,7 +35,7 @@ func color(s string) func(...interface{}) string {
 	}
 }
 
-var osLogo string = nil
+var osLogo string = "ﳑ"
 func windowsPrompt(){
 		osLogo = ""
 		prompt()
@@ -46,8 +49,6 @@ func linuxPrompt() {
 		prompt()
 }
 func prompt() {
-	return fmt.Sprintf(
-		"\n%s\n%s",
-		promptSym,
-	)
+	fmt.Println(osLogo)
+
 }
