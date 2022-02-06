@@ -13,8 +13,6 @@ func main() {
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("promptSymbol", "$")
 	viper.SetDefault("useGit",false)
-	var conf config
-	viper.Unmarshal(&conf)
 	switch os {
 				
 		case "windows":
@@ -53,5 +51,5 @@ func linuxPrompt() {
 	prompt()
 }
 func prompt() {
-	fmt.Println(osLogo + " "+viper.GetString(promptSymbol))
+	fmt.Println(osLogo + " "+viper.GetString("promptSymbol"))
 }
