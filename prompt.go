@@ -38,5 +38,12 @@ func color(s string) func(...interface{}) string {
 	}
 }
 func prompt(osLogo string) {
+	if osLogo == "" {
+		var osSym string = cyan(osLogo)
+	}else if osLogo == ""{
+		var osSym string = red(osLogo)
+	}else {
+		var osSym string = green(osLogo)
+	}
 	fmt.Println(cyan(osLogo) + " "+viper.GetString("prompt.icon"))
 }
