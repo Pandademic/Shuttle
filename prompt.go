@@ -13,17 +13,15 @@ func main() {
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
 	viper.SetDefault("git.enabled",true)
-	var osLogo string = ""
-	switch os {
-				
+	switch os {			
 		case "windows":
-			osLogoString = ""
+			var osLogoString := ""
 			prompt(osLogoString)
 		case "darwin":
-			osLogoString = ""
+			var osLogoString := ""
 			prompt(osLogoString)
 		case "linux":
-			osLogoString = ""
+			var osLogoString := ""
 			prompt(osLogoString)	
 	}
 
