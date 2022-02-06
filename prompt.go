@@ -17,14 +17,14 @@ func main() {
 	switch os {
 				
 		case "windows":
-			osLogo = ""
-			prompt()
+			osLogoString = ""
+			prompt(osLogoString)
 		case "darwin":
-			osLogo = ""
-			prompt()
+			osLogoString = ""
+			prompt(osLogoString)
 		case "linux":
-			osLogo = ""
-			prompt()	
+			osLogoString = ""
+			prompt(osLogoString)	
 	}
 
 }
@@ -39,6 +39,6 @@ func color(s string) func(...interface{}) string {
 		return fmt.Sprintf(s, fmt.Sprint(args...))
 	}
 }
-func prompt() {
+func prompt(osLogo string) {
 	fmt.Println(cyan(osLogo) + " "+viper.GetString("prompt.icon"))
 }
