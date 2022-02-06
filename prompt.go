@@ -16,7 +16,7 @@ func main() {
 	viper.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
 	viper.AddConfigPath(".")   // path to look for the config file in
 	viper.AddConfigPath("$HOME/.appname")  // call multiple times to add many search paths
-	err := viper.ReadInConfig() // Find and read the config file
+	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("promptSymbol", "$")
 	viper.SetDefault("useGit",false)
 	viper.SetDefault("multiLine",false)
