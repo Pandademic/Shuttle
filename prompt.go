@@ -15,13 +15,13 @@ func main() {
 	viper.SetDefault("git.enabled",true)
 	switch os {			
 		case "windows":
-			var osLogoString := ""
+			var osLogoString string = ""
 			prompt(osLogoString)
 		case "darwin":
-			var osLogoString := ""
+			var osLogoString string = ""
 			prompt(osLogoString)
 		case "linux":
-			var osLogoString := ""
+			var osLogoString string = ""
 			prompt(osLogoString)	
 	}
 
