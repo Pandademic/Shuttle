@@ -40,6 +40,7 @@ func color(s string) func(...interface{}) string {
 func prompt(osLogo string) {
 	if osLogo == "" {
 		var osSym string = cyan(osLogo)
+		continue
 	}else if osLogo == ""{
 		var osSym string = red(osLogo)
 	}else {
