@@ -21,7 +21,7 @@ func main() {
 	viper.SetDefault("useGit",false)
 	viper.SetDefault("multiLine",false)
 	viper.SetDefault("topLine",false)// again only respected if multi-line = true
-	var conf config 
+	var conf := config{promptSymbol:"",Git:false,multiLine:false,topLine:""} 
 	err := viper.Unmarshal(&C)
 	if err != nil{
 		fmt.Println("ERR: couldn't put push config into struct")
