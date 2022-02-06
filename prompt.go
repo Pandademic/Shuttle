@@ -45,5 +45,5 @@ func prompt(osLogo string) {
 	}else {
 		var osSym string = green(osLogo)
 	}
-	fmt.Println(cyan(osLogo) + " "+viper.GetString("prompt.icon"))
+	fmt.Println(cyan(osSym) + " "+viper.GetString("prompt.icon"))
 }
