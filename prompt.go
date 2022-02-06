@@ -5,12 +5,6 @@ import (
      "github.com/spf13/viper"
 )
 func main() {
-	type config struct {
-		promptSymbol string
-		Git bool
-		multiLine bool
-		topLine string // only if multi line = true
-	}
 	var os string = runtime.GOOS
 	viper.SetConfigName("dotshuttle") // name of config file (without extension)
 	viper.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
@@ -19,8 +13,6 @@ func main() {
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("promptSymbol", "$")
 	viper.SetDefault("useGit",false)
-	viper.SetDefault("multiLine",false)
-	viper.SetDefault("topLine",false)// again only respected if multi-line = true
 	var conf config
 	viper.Unmarshal(&conf)
 	switch os {
@@ -49,17 +41,17 @@ func color(s string) func(...interface{}) string {
 
 var osLogo string = ""
 func windowsPrompt(){
-		osLogo = ""
-		prompt()
+	osLogo = ""
+	prompt()
 }
 func darwinPrompt(){
-		osLogo = ""
-		prompt()
+	osLogo = ""
+	prompt()
 }
 func linuxPrompt() {
-		osLogo = ""
-		prompt()
+	osLogo = ""
+	prompt()
 }
 func prompt() {
-	fmt.Println(osLogo + " "+conf.promptSymbol)
+	fmt.Println(osLogo + " "+viper.GetString(promptSymbol))
 }
