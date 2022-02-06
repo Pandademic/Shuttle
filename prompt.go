@@ -11,17 +11,20 @@ func main() {
 	viper.AddConfigPath(".")   // path to look for the config file in
 	viper.AddConfigPath("$HOME/.appname")  // call multiple times to add many search paths
 	viper.ReadInConfig() // Find and read the config file
-	viper.SetDefault("promptSymbol", "$")
-	viper.SetDefault("useGit",false)
+	viper.SetDefault("prompt.icon", "$")
+	viper.SetDefault("git.enabled",true)
+	var osLogo string = ""
 	switch os {
 				
 		case "windows":
-			windowsPrompt()
-				
+			osLogo = ""
+			prompt()
 		case "darwin":
-			darwinPrompt()
+			osLogo = ""
+			prompt()
 		case "linux":
-			linuxPrompt()
+			osLogo = ""
+			prompt()	
 	}
 
 }
@@ -36,20 +39,6 @@ func color(s string) func(...interface{}) string {
 		return fmt.Sprintf(s, fmt.Sprint(args...))
 	}
 }
-
-var osLogo string = ""
-func windowsPrompt(){
-	osLogo = ""
-	prompt()
-}
-func darwinPrompt(){
-	osLogo = ""
-	prompt()
-}
-func linuxPrompt() {
-	osLogo = ""
-	prompt()
-}
 func prompt() {
-	fmt.Println(osLogo + " "+viper.GetString("promptSymbol"))
+	fmt.Println(cyan(osLogo) + " "+viper.GetString("prompt.icon"))
 }
