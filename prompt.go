@@ -62,5 +62,4 @@ func linuxPrompt() {
 }
 func prompt() {
 	fmt.Println(osLogo + " "+conf.promptSymbol)
-
 }
