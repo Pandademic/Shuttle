@@ -21,7 +21,7 @@ func main() {
 	viper.SetDefault("useGit",false)
 	viper.SetDefault("multiLine",false)
 	viper.SetDefault("topLine",false)// again only respected if multi-line = true
-	var conf := config{promptSymbol:"",Git:false,multiLine:false,topLine:""} 
+	var conf config
 	viper.Unmarshal(&conf)
 	switch os {
 				
