@@ -6,7 +6,7 @@ import (
 )
 func main() {
 	var os string = runtime.GOOS
-	viper.SetConfigName("dotshuttle") // name of config file (without extension)
+	viper.SetConfigName("shuttle") // name of config file (without extension)
 	viper.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
 	viper.AddConfigPath(".")   // path to look for the config file in
 	viper.AddConfigPath("$HOME/.appname")  // call multiple times to add many search paths
