@@ -19,9 +19,9 @@ func main() {
 	err := viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("promptSymbol", "$")
 	viper.SetDefault("useGit",false)
-	viper.setDefault("multiLine",false)
-	viper.setDefault("topLine",false)// again only respected if multi-line = true
-	var C config
+	viper.SetDefault("multiLine",false)
+	viper.SetDefault("topLine",false)// again only respected if multi-line = true
+	var conf config 
 	err := viper.Unmarshal(&C)
 	if err != nil{
 		fmt.Println("ERR: couldn't put push config into struct")
@@ -64,6 +64,6 @@ func linuxPrompt() {
 		prompt()
 }
 func prompt() {
-	fmt.Println(osLogo + " "+C.promptSymbol)
+	fmt.Println(osLogo + " "+conf.promptSymbol)
 
 }
