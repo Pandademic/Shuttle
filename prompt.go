@@ -3,7 +3,7 @@ import (
     "fmt"
     "runtime"
      "github.com/spf13/viper"
-      "filepath"
+      "path/filepath"
       "strings"
 	"os"
 )
@@ -39,28 +39,8 @@ func trimPath(cwd, home string) string {
 		path = cwd
 		return path
 	}
-	items := strings.Split(path, "/")
-	truncItems := []string{}
-	for i, item := range items {
-		if i == (len(items) - 1) {
-			truncItems = append(truncItems, item)
-			break
-		}
-		truncItems = append(truncItems, item[:1])
-	}
-	return filepath.Join(truncItems...)
-}
-func winTrimPath(cwd, home string) string {
-	var path string
-	if strings.HasPrefix(cwd, home) {
-		path = "~" + strings.TrimPrefix(cwd, home)
-	} else {
-		// If path doesn't contain $HOME, return the
-		// entire path as is.
-		path = cwd
-		return path
-	}
-	items := strings.Split(path, "\\")
+	pathSep := os.PathSeparator
+	items := strings.Split(path,string(pathSep))
 	truncItems := []string{}
 	for i, item := range items {
 		if i == (len(items) - 1) {
@@ -86,13 +66,7 @@ func prompt(osLogo string) {
 	viper.AutomaticEnv
 	homeVar := viper.Get("HOME")
 	if yesTruncDir{
-		switch os{
-			case "windows":
-				prompt = prompt + red(winTrimPath(cwd,homeVar)
-			default:
-				prompt = prompt + red(trimPath(cwd,homeVar)
-		
-		}
+		prompt = prompt + red(trimPath(cwd,homeVar)
 	}
 	prompt = prompt + "" + cyan(icon)
 	fmt.Println(prompt)
