@@ -6,7 +6,7 @@ import (
       "path/filepath"
       "strings"
       "os"
-      "colors"
+      "color"
 )
 func main() {
 	var os string = runtime.GOOS
