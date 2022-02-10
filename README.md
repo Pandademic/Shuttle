@@ -6,6 +6,7 @@ The >200 SLOC customizal fully cross platform inter planetary prompt without a l
 ----------
 
 * less than 200 SLOC
+* compiles to a ~4.5 MB binary (5.456 MB actually)
 * customize with a simple YAML file defing prompt params. Seriously , here's mine:
 ```yml
 prompt:
