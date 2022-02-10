@@ -65,7 +65,7 @@ func prompt(osLogo string) {
 	cwd := os.Getwd
 	viper.AutomaticEnv
 	homeVar := viper.Get("HOME")
-	if yesTruncDir{
+	if yesTruncDir == true{
 		prompt = prompt + red(trimPath(cwd,homeVar)
 	}
 	prompt = prompt + "" + cyan(icon)
