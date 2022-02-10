@@ -3,6 +3,8 @@ import (
     "fmt"
     "runtime"
      "github.com/spf13/viper"
+      "os"
+      "strings"
 )
 func main() {
 	var os string = runtime.GOOS
