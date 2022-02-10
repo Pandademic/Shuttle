@@ -23,6 +23,7 @@ func main() {
 		case "linux":
 			var osLogo string= ""
 	}
+	prompt(osLogo)
 }
 var (
 	red   = color("\033[31m%s\033[0m")
