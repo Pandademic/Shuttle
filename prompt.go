@@ -39,7 +39,7 @@ func trimPath(cwd, home string) string {
 		path = cwd
 		return path
 	}
-	pathSep := os.PathSeparator
+	pathSep := os.PathSeparator()
 	items := strings.Split(path,string(pathSep))
 	truncItems := []string{}
 	for i, item := range items {
