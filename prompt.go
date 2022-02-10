@@ -13,17 +13,6 @@ func main() {
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
 	viper.SetDefault("prompt.truncateDir",true)
-	switch os {			
-		case "windows":
-			var osLogoString string = ""
-			prompt(osLogoString)
-		case "darwin":
-			var osLogoString string = ""
-			prompt(osLogoString)
-		case "linux":
-			var osLogoString string = ""
-			prompt(osLogoString)	
-	}
 
 }
 var (
@@ -90,11 +79,16 @@ func prompt(osLogo string) {
 	var icon string = viper.GetString("prompt.icon")
 	var yesTruncDir = viper.GetBool("prompt.truncateDir")
 	prompt = "OS: "+osSym + " "
-	switch os{
-		case"windows":
+	windows":
+	if yesTrunc{
+		if os=="windows"{
 			prompt = prompt + red(winTrimPath(os.Getwd,os.Getenv(HOME)))
-		default:
+
+		}
+		else {
 			prompt = prompt + red(trimPath(os.Getwd,os.Getenv(HOME)))
+		}
+	
 	}
 	prompt = prompt + "" + cyan(icon)
 	fmt.Println(prompt)
