@@ -79,7 +79,6 @@ func prompt(osLogo string) {
 	var icon string = viper.GetString("prompt.icon")
 	var yesTruncDir = viper.GetBool("prompt.truncateDir")
 	prompt = "OS: "+osSym + " "
-	windows":
 	if yesTrunc{
 		if os=="windows"{
 			prompt = prompt + red(winTrimPath(os.Getwd,os.Getenv(HOME)))
