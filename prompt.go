@@ -71,10 +71,10 @@ func prompt(osLogo string) {
 	var icon string = viper.GetString("prompt.icon")
 	var yesTruncDir = viper.GetBool("prompt.truncateDir")
 	prompt = "OS: "+osSym + " "
-	cwd , err := os.Getwd()
+	cwd , _ := os.Getwd()
 	viper.AutomaticEnv()
 	homeVar := viper.Get("HOME")
-	prompt = prompt + red(trimPath(cwd,string(homeVar)))
+	prompt = prompt + red(trimPath(cwd,homeVar.(string))
 	prompt = prompt + "" + cyan(icon)
 	fmt.Println(prompt)
 }
