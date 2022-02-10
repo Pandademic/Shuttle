@@ -53,9 +53,9 @@ func trimPath(cwd, home string) string {
 }
 func prompt(osLogo string) {
 	osSym := red(osLogo)
-	if osLogo == "" {
+	if(osLogo == ""){
 		osSym = cyan(osLogo)
-	}else if osLogo == ""{
+	}else if(osLogo == ""){
 		osSym = green(osLogo)
 	}
 	var prompt string = ""
@@ -65,7 +65,7 @@ func prompt(osLogo string) {
 	cwd := os.Getwd
 	viper.AutomaticEnv
 	homeVar := viper.Get("HOME")
-	if yesTruncDir == true{
+	if(yesTruncDir == true){
 		prompt = prompt + red(trimPath(cwd,homeVar)
 	}
 	prompt = prompt + "" + cyan(icon)
