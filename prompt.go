@@ -15,6 +15,14 @@ func main() {
 	viper.AddConfigPath("$HOME/.appname")  // call multiple times to add many search paths
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
+	switch os{
+		case "windows":
+			var osLogo string= ""
+		case "darwin":
+			var osLogo string= ""
+		case "linux":
+			var osLogo string= ""
+	}
 }
 var (
 	red   = color("\033[31m%s\033[0m")
@@ -37,7 +45,7 @@ func trimPath(cwd, home string) string {
 		path = cwd
 		return path
 	}
-	pathSep := os.PathSeparator()
+	pathSep := os.PathSeparator
 	items := strings.Split(path,string(pathSep))
 	truncItems := []string{}
 	for i, item := range items {
