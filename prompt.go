@@ -5,7 +5,8 @@ import (
      "github.com/spf13/viper"
       "path/filepath"
       "strings"
-	"os"
+      "os"
+      "colors"
 )
 func main() {
 	var os string = runtime.GOOS
@@ -71,11 +72,11 @@ func prompt(osLogo string) {
 	var prompt string = ""
 	var icon string = viper.GetString("prompt.icon")
 	//var yesTruncDir = viper.GetBool("prompt.truncateDir")
-	prompt = "OS: "+osSym + " "
+	prompt = "OS: "+osSym + "	"
 	cwd , _ := os.Getwd()
 	viper.AutomaticEnv()
 	homeVar := viper.Get("HOME")
-	prompt = prompt + red(trimPath(cwd,homeVar.(string)))
+	prompt = prompt + colors.yellow(trimPath(cwd,homeVar.(string)))+" ")
 	prompt = prompt + "" + cyan(icon)
 	fmt.Println(prompt)
 }
