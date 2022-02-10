@@ -1,4 +1,4 @@
-module github.com/Pandademic/go-prompt
+module github.com/Pandademic/Shuttle
 
 go 1.17
 
