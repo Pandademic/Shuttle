@@ -15,8 +15,6 @@ func main() {
 	viper.AddConfigPath("$HOME/.appname")  // call multiple times to add many search paths
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
-	viper.SetDefault("prompt.truncateDir",true)
-
 }
 var (
 	red   = color("\033[31m%s\033[0m")
@@ -65,9 +63,7 @@ func prompt(osLogo string) {
 	cwd := os.Getwd()
 	viper.AutomaticEnv()
 	homeVar := viper.Get("HOME")
-	if(yesTruncDir == true){
-		prompt = prompt + red(trimPath(cwd,homeVar)
-	}
+	prompt = prompt + red(trimPath(cwd,homeVar)
 	prompt = prompt + "" + cyan(icon)
 	fmt.Println(prompt)
 }
