@@ -6,7 +6,6 @@ import (
       "path/filepath"
       "strings"
       "os"
-      "color"
 )
 func main() {
 	var os string = runtime.GOOS
@@ -76,7 +75,7 @@ func prompt(osLogo string) {
 	cwd , _ := os.Getwd()
 	viper.AutomaticEnv()
 	homeVar := viper.Get("HOME")
-	prompt = prompt + colors.yellow(trimPath(cwd,homeVar.(string)))+" ")
+	prompt = prompt + red(""+trimPath(cwd,homeVar.(string)))+" ")
 	prompt = prompt + "" + cyan(icon)
 	fmt.Println(prompt)
 }
