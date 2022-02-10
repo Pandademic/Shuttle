@@ -68,7 +68,7 @@ func winTrimPath(cwd, home string) string {
 		path = cwd
 		return path
 	}
-	items := strings.Split(path, "\")
+	items := strings.Split(path, '\')
 	truncItems := []string{}
 	for i, item := range items {
 		if i == (len(items) - 1) {
