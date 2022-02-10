@@ -3,8 +3,9 @@ import (
     "fmt"
     "runtime"
      "github.com/spf13/viper"
-      "os"
+      "filepath"
       "strings"
+	"os"
 )
 func main() {
 	var os string = runtime.GOOS
@@ -81,12 +82,15 @@ func prompt(osLogo string) {
 	var icon string = viper.GetString("prompt.icon")
 	var yesTruncDir = viper.GetBool("prompt.truncateDir")
 	prompt = "OS: "+osSym + " "
+	cwd := os.Getwd
+	viper.AutomaticEnv
+	homeVar := viper.Get("HOME")
 	if yesTruncDir{
 		switch os{
 			case "windows":
-				prompt = prompt + red(winTrimPath(os.Getwd,os.Getenv(HOME)))
+				prompt = prompt + red(winTrimPath(cwd,homeVar)
 			default:
-				prompt = prompt + red(trimPath(os.Getwd,os.Getenv(HOME)))
+				prompt = prompt + red(trimPath(cwd,homeVar)
 		
 		}
 	}
