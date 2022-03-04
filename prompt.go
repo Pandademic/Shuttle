@@ -2,10 +2,11 @@ package main
 import (
     "fmt"
     "runtime"
-     "github.com/spf13/viper"
-      "path/filepath"
-      "strings"
-      "os"
+    "github.com/spf13/viper"
+    "path/filepath"
+     "strings"
+     "os"
+    "github.com/gookit/color"
 )
 func main() {
 	var os string = runtime.GOOS
@@ -29,16 +30,9 @@ func main() {
 			prompt(osLogo)
 	}
 }
-var (
-	red   = color("\033[31m%s\033[0m")
-	green = color("\033[32m%s\033[0m")
-	cyan  = color("\033[36m%s\033[0m")
-)
-
-func color(s string) func(...interface{}) string {
-	return func(args ...interface{}) string {
-		return fmt.Sprintf(s, fmt.Sprint(args...))
-	}
+red := color.FgRed.Render
+green := color.FgGreen.Render
+cyan := color.FgCyan.Render
 }
 func trimPath(cwd, home string) string {
 	var path string
