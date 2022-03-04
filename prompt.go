@@ -30,9 +30,6 @@ func main() {
 			prompt(osLogo)
 	}
 }
-red := color.FgRed.Render
-green := color.FgGreen.Render
-cyan := color.FgCyan.Render
 func trimPath(cwd, home string) string {
 	var path string
 	if strings.HasPrefix(cwd, home) {
@@ -56,6 +53,9 @@ func trimPath(cwd, home string) string {
 	return filepath.Join(truncItems...)
 }
 func prompt(osLogo string) {
+	red := color.FgRed.Render
+	green := color.FgGreen.Render
+	cyan := color.FgCyan.Render
 	osSym := red(osLogo)
 	if(osLogo == ""){
 		osSym = cyan(osLogo)
