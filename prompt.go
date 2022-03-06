@@ -71,6 +71,6 @@ func prompt(osLogo string) {
 	homeVar := viper.Get("HOME")
 	prompt = prompt + red(""+trimPath(cwd,homeVar.(string))+" ")
 	prompt = prompt + "" + cyan(icon) + "  "
-	prompt = prompt + "" + cyan(`\e0b4`) + ""
+	//prompt = prompt + "" + cyan(``) + ""
 	fmt.Println(prompt)
 }
