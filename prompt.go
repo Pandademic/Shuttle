@@ -57,6 +57,11 @@ func trimPath(cwd, home string) string {
 	}
 	return filepath.Join(truncItems...)
 }
+func use(vals ...interface{}) {
+    for _, val := range vals {
+        _ = val
+    }
+}
 func prompt(osLogo string) {
 	// FG colors
 	red := color.FgRed.Render
@@ -73,6 +78,7 @@ func prompt(osLogo string) {
 	bgBlue := color.BgBlue.Render
 	// create a symbol
 	osSym := bgRed(white(osLogo))
+	use(red,blue,bgGreen,bgWhite)
 	if(osLogo == ""){
 		osSym = bgBlue(white(osLogo))
 	}else if(osLogo == ""){
