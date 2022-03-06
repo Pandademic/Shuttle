@@ -77,16 +77,16 @@ func prompt(osLogo string) {
 	bgWhite := color.BgWhite.Render
 	bgBlue := color.BgBlue.Render
 	// create a symbol
-	osSym := bgRed(white(osLogo))
 	use(red,blue,bgGreen,bgWhite)
+	osSym := bgRed(white(" "+osLogo+" "))
 	if(osLogo == ""){
-		osSym = bgBlue(white(osLogo))
+		osSym = bgBlue(white(" "+osLogo+" "))
 	}else if(osLogo == ""){
-		osSym = bgCyan(white(osLogo))
+		osSym = bgCyan(white(" "+osLogo+" "))
 	}
 	// render prompt
 	var prompt string
-	prompt = "◖" + green("OS: ") +osSym + "	" + "❭"
+	prompt = "◖" + bgGreen(white("OS: ")) +osSym + "	"
 	cwd , _ := os.Getwd()
 	homeVar := viper.Get("HOME")
 	prompt = prompt + bgYellow(white(""+trimPath(cwd,homeVar.(string))+" "))
