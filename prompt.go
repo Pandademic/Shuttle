@@ -77,7 +77,7 @@ func prompt(osLogo string) {
 	bgWhite := color.BgWhite.Render
 	bgBlue := color.BgBlue.Render
 	// create a symbol
-	use(red,blue,bgGreen,bgWhite)
+	use(red,blue,bgGreen,bgWhite,green) // dont complain about unused colors
 	osSym := bgRed(white(" "+osLogo+" "))
 	if(osLogo == ""){
 		osSym = bgBlue(white(" "+osLogo+" "))
