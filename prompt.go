@@ -9,16 +9,20 @@ import (
     "github.com/gookit/color"
 )
 func main() {
+	//configure before anything
 	viper.AutomaticEnv()
-	var os string = runtime.GOOS
-	viper.SetConfigName("shuttle") // name of config file (without extension)
-	viper.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
-	viper.AddConfigPath(".")   // path to look for the config file in
+	viper.SetConfigName("shuttle")
+	viper.SetConfigType("yaml") 
+	// paths to look for the config file in
+	viper.AddConfigPath(".")   
 	viper.AddConfigPath("$HOME")  
 	viper.AddConfigPath("$HOME/.shuttle")
+	viper.AddConfigPath("$HOME/.config")
+	viper.AddConfigPath("$HOME/.config/shuttle")
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
-	viper.SetDefault("prompt.truncateDir",true)
+	// detect enviorment
+	var os string = runtime.GOOS
 	switch os{
 		case "windows":
 			var osLogo string= ""
@@ -54,24 +58,35 @@ func trimPath(cwd, home string) string {
 	return filepath.Join(truncItems...)
 }
 func prompt(osLogo string) {
+	// FG colors
 	red := color.FgRed.Render
 	green := color.FgGreen.Render
 	cyan := color.FgCyan.Render
 	white := color.FgWhite.Render
+	blue := color.FgBlue.Render
+	// BG colors
 	bgYellow := color.BgYellow.Render
+	bgRed := color.BgRed.Render
+	bgGreen := color.BgGreen.Render
+	bgCyan := color.BgCyan.Render
+	bgWhite := color.BgWhite.Render
+	bgBlue := color.BgBlue.Render
+	// create a symbol
 	osSym := red(osLogo)
-	if(osLogo == ""){
+	if(osLogo == ""){
+		osSym = blue(osLogo)
+	}else if(osLogo == ""){
 		osSym = cyan(osLogo)
-	}else if(osLogo == ""){
-		osSym = green(osLogo)
 	}
-	var prompt string = ""
-	prompt = "◖" + ""
-	var icon string = viper.GetString("prompt.icon")
-	prompt = "OS: "+osSym + "	"
+	// render prompt
+	var prompt string
+	prompt = "◖" + "OS: "+osSym + "	" + "❭"
 	cwd , _ := os.Getwd()
 	homeVar := viper.Get("HOME")
 	prompt = prompt + bgYellow(white(""+trimPath(cwd,homeVar.(string))+" "))
+	// icon
+	var icon string = viper.GetString("prompt.icon")
 	prompt = prompt + "" + cyan(icon) + "  "
+	// print it out
 	fmt.Println(prompt)
 }
