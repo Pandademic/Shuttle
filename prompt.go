@@ -9,6 +9,7 @@ import (
     "github.com/gookit/color"
 )
 func main() {
+	viper.AutomaticEnv()
 	var os string = runtime.GOOS
 	viper.SetConfigName("shuttle") // name of config file (without extension)
 	viper.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
@@ -20,13 +21,13 @@ func main() {
 	viper.SetDefault("prompt.truncateDir",true)
 	switch os{
 		case "windows":
-			var osLogo string= ""
+			var osLogo string= ""
 			prompt(osLogo)
 		case "darwin":
-			var osLogo string= ""
+			var osLogo string= ""
 			prompt(osLogo)
 		case "linux":
-			var osLogo string= ""
+			var osLogo string= ""
 			prompt(osLogo)
 	}
 }
@@ -56,6 +57,8 @@ func prompt(osLogo string) {
 	red := color.FgRed.Render
 	green := color.FgGreen.Render
 	cyan := color.FgCyan.Render
+	white := color.FgWhite.Render
+	bgYellow := color.BgYellow.Render
 	osSym := red(osLogo)
 	if(osLogo == ""){
 		osSym = cyan(osLogo)
@@ -63,14 +66,12 @@ func prompt(osLogo string) {
 		osSym = green(osLogo)
 	}
 	var prompt string = ""
+	prompt = "◖" + ""
 	var icon string = viper.GetString("prompt.icon")
-	//var yesTruncDir = viper.GetBool("prompt.truncateDir")
 	prompt = "OS: "+osSym + "	"
 	cwd , _ := os.Getwd()
-	viper.AutomaticEnv()
 	homeVar := viper.Get("HOME")
-	prompt = prompt + red(""+trimPath(cwd,homeVar.(string))+" ")
+	prompt = prompt + bgYellow(white(""+trimPath(cwd,homeVar.(string))+" "))
 	prompt = prompt + "" + cyan(icon) + "  "
-	//prompt = prompt + "" + cyan(``) + ""
 	fmt.Println(prompt)
 }
