@@ -1,0 +1,12 @@
+prompt:
+   style: "plaintext"
+   icon: ">"
+   segments:
+        os: true
+        user : false
+        cwd : true
+   options:
+        exitCode: true
+        # :arrow_up: show prompt icon red if last exit code is non zero
+        segSept : false
+        # show a seperator between segments
