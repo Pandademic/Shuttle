@@ -6,7 +6,7 @@ import (
     "path/filepath"
      "strings"
      "os"
-    "github.com/gookit/color"
+    "github.com/gookit/color" 	
 )
 func main() {
 	//configure before anything
