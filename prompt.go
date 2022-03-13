@@ -86,7 +86,7 @@ func prompt(osLogo string) {
 	}
 	// render prompt
 	var prompt string
-	prompt = "" + bgGreen(white("OS: ")) +osSym
+	prompt = cyan("") + bgGreen(white("OS: ")) +osSym
 	cwd , _ := os.Getwd()
 	homeVar := viper.Get("HOME")
 	prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
