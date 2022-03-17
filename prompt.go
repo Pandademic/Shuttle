@@ -86,10 +86,15 @@ func prompt(osLogo string) {
 	}
 	// render prompt
 	var prompt string
-	prompt = cyan("") + bgGreen(white("OS: ")) +osSym
-	cwd , _ := os.Getwd()
-	homeVar := viper.Get("HOME")
-	prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
+	prompt = cyan("")
+	if(viper.Get("prompt.segments.os" == true){
+		prompt = prompt + osSym
+	}
+	if(viper.Get("prompt.segments.cwd") == true){
+		cwd , _ := os.Getwd()
+		homeVar := viper.Get("HOME")
+		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))\
+	}
 	// icon
 	var icon string = viper.GetString("prompt.icon")
 	prompt = prompt + "" + cyan(icon) + "  "
