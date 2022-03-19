@@ -93,11 +93,34 @@ func prompt(osLogo string) {
 	if(viper.Get("prompt.segments.cwd") == true){
 		cwd , _ := os.Getwd()
 		homeVar := viper.Get("HOME")
-		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))\
+		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
 	}
 	// icon
 	var icon string = viper.GetString("prompt.icon")
-	prompt = prompt + "" + cyan(icon) + "  "
+	exitCode := viper.GetBool("prompt.options.exitCode")
+	code := viper.Get("?")
+	var lastExitCode string = code.(string)
+	if(exitCode != false){
+		if(runtime.GOOS == "windows"){
+			if(code = "False"){
+				prompt = prompt + "" + red(icon) + ""
+			}
+			else {
+				prompt = prompt + "" + icon + "  "
+			}
+		}
+		else{
+			if(code != 0){
+				prompt = prompt + "" + red(icon) + "  "
+			}
+			else {
+			    prompt = prompt + "" + icon + "  "
+			}
+		}
+	}
+	else{
+		prompt = prompt + "" + icon + "  "
+	}
 	// print it out
 	fmt.Println(prompt)
 }
