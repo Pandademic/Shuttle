@@ -8,6 +8,10 @@ import (
      "os"
     "github.com/gookit/color" 	
 )
+var(
+  osLogo string
+  os string
+)
 func main() {
 	//configure before anything
 	viper.AutomaticEnv()
@@ -22,16 +26,16 @@ func main() {
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
 	// detect enviorment
-	var os string = runtime.GOOS
+	os = runtime.GOOS
 	switch os{
 		case "windows":
-			var osLogo string= ""
+			osLogo = ""
 			prompt(osLogo)
 		case "darwin":
-			var osLogo string= ""
+			osLogo = ""
 			prompt(osLogo)
 		case "linux":
-			var osLogo string= ""
+			osLogo = ""
 			prompt(osLogo)
 	}
 }
@@ -57,7 +61,7 @@ func trimPath(cwd, home string) string {
 	}
 	return filepath.Join(truncItems...)
 }
-func use(vals ...interface{}) {
+func use(vals ...interface{}){
     for _, val := range vals {
         _ = val
     }
