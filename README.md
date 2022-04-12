@@ -13,9 +13,7 @@ prompt:
   symbol: "▲"
   showOs: false
   truncateDirs: true
- git:
-   enabled: true
-
+  style: plaintext
 ```
 * writen in go and so can compile for **ANY** platform 
 
