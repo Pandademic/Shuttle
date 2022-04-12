@@ -20,7 +20,6 @@ func main() {
 	// paths to look for the config file in
 	viper.AddConfigPath(".")   
 	viper.AddConfigPath("$HOME")  
-	viper.AddConfigPath("$HOME/.shuttle")
 	viper.AddConfigPath("$HOME/.config")
 	viper.AddConfigPath("$HOME/.config/shuttle")
 	viper.ReadInConfig() // Find and read the config file
@@ -32,10 +31,10 @@ func main() {
 			osLogo = ""
 			prompt(osLogo)
 		case "darwin":
-			osLogo = ""
+			osLogo = ""
 			prompt(osLogo)
 		case "linux":
-			osLogo = ""
+			osLogo = ""
 			prompt(osLogo)
 	}
 }
@@ -44,8 +43,7 @@ func trimPath(cwd, home string) string {
 	if strings.HasPrefix(cwd, home) {
 		path = "~" + strings.TrimPrefix(cwd, home)
 	} else {
-		// If path doesn't contain $HOME, return the
-		// entire path as is.
+		// If path doesn't contain $HOME, return the entire path as is.
 		path = cwd
 		return path
 	}
@@ -80,8 +78,7 @@ func prompt(osLogo string) {
 	bgCyan := color.BgCyan.Render
 	bgWhite := color.BgWhite.Render
 	bgBlue := color.BgBlue.Render
-	// create a symbol
-	use(red,blue,bgGreen,bgWhite,green) // dont complain about unused colors
+	use(red,blue,bgGreen,bgWhite,green) // don`t complain about unused colors
 	osSym := bgRed(white(" "+osLogo+" "))
 	if(osLogo == ""){
 		osSym = bgBlue(white(" "+osLogo+" "))
