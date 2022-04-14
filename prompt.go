@@ -23,7 +23,7 @@ type config struct{
   colorBasedOnExitCode bool
   showSomethingBeforePrompt bool
   somethingBeforePrompt string
-)
+}
 // config instance
 var(
    c config	
