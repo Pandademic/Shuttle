@@ -2,6 +2,7 @@ style: "plaintext"
 icon: ">"
 seperateSegments: false
 segmentSeperator: "this string won't be used at all , since separateSegents is false"
+# if seperateSegemnts is true , the seperator will be printed in cyan!!
 colorBasedOnExitCode: false
 # show the prompt icon as red if the last code was non-zero , or $? is False in powershell(windows)
 showSomethingBeforePrompt: false
