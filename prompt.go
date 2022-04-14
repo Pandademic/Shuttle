@@ -11,7 +11,7 @@ import (
 // runtime variables
 var(
   osLogo string = ""
-  os string = ""
+  platform string = ""
   prompt string	 = ""
 )
 // config type
@@ -52,8 +52,8 @@ func main() {
 		fmt.Println("Unable to decode config")
 	}
 	// detect env
-	os = runtime.GOOS
-	switch os{
+	platform = runtime.GOOS
+	switch platform{
 		case "windows":
 			osLogo = ""
 			prompt(osLogo)
@@ -127,7 +127,7 @@ func prompt() {
 	code := os.Getenv("?")
 	var lastExitCode string = string(code)
 	if(c.colorBasedOnExitCode){
-		if(os == "windows"){
+		if(platform == "windows"){
 			if(code == "False"){
 				prompt = prompt + "" + red(icon) + ""
 			}else{
