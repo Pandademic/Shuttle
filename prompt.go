@@ -116,7 +116,7 @@ func prompt() {
 	if(c.showSomethingBeforePrompt){
 	    prompt = cyan(string(c.somethingBeforePrompt))
 	}
-	if(viper.Get("segments.os" == true){
+	if(viper.Get("segments.os" == true)){
 		prompt = prompt + osSym
 	}
 	if(viper.Get("segments.cwd") == true){
