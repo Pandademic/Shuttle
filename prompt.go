@@ -133,12 +133,10 @@ func prompt() {
 			}else{
 				prompt = prompt + "" + icon + "  "
 			}
-		}
-		else{
+		}else{
 			if(code != 0){
 				prompt = prompt + "" + red(icon) + "  "
-			}
-			else {
+			}else {
 			    prompt = prompt + "" + icon + "  "
 			}
 		}
