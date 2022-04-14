@@ -130,8 +130,7 @@ func prompt() {
 		if(os == "windows"){
 			if(code == "False"){
 				prompt = prompt + "" + red(icon) + ""
-			}
-			else {
+			}else{
 				prompt = prompt + "" + icon + "  "
 			}
 		}
