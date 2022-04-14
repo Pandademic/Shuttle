@@ -140,8 +140,7 @@ func prompt() {
 			    prompt = prompt + "" + icon + "  "
 			}
 		}
-	}
-	else{
+	}else{
 		prompt = prompt + "" + icon + "  "
 	}
 	// print it out
