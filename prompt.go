@@ -16,13 +16,13 @@ var(
 )
 // config type
 type config struct{
-  icon string
-  style string
-  seperateSegments bool
-  segmentSeperator string
-  colorBasedOnExitCode bool
-  showSomethingBeforePrompt bool
-  somethingBeforePrompt string
+  icon string,
+  style string,
+  seperateSegments bool,
+  segmentSeperator string,
+  colorBasedOnExitCode bool,
+  showSomethingBeforePrompt bool,
+  somethingBeforePrompt string,
 )
 // config instance
 var(
