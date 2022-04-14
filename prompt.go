@@ -61,7 +61,7 @@ func main() {
 		case "linux":
 			osLogo = ""
 	}
-	prompt()
+	deploy()
 }
 func trimPath(cwd, home string) string {
 	var path string
@@ -89,7 +89,7 @@ func use(vals ...interface{}){
         _ = val
     }
 }
-func prompt() {
+func deploy() {
 	// FG colors
 	red := color.FgRed.Render
 	green := color.FgGreen.Render
