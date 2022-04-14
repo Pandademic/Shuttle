@@ -8,10 +8,26 @@ import (
      "os"
     "github.com/gookit/color" 	
 )
+// runtime variables
 var(
   osLogo string
-  os string
+  os string 
+  prompt string	
 )
+// config type
+type config struct{
+  icon string
+  style string
+  seperateSegments bool
+  segmentSeperator string
+  colorBasedOnExitCode bool
+  showSomethingBeforePrompt bool
+  somethingBeforePrompt string
+)
+// config instance
+var(
+   c config	
+)		
 func main() {
 	//configure before anything
 	viper.AutomaticEnv()
@@ -23,8 +39,19 @@ func main() {
 	viper.AddConfigPath("$HOME/.config")
 	viper.AddConfigPath("$HOME/.config/shuttle")
 	viper.ReadInConfig() // Find and read the config file
-	viper.SetDefault("prompt.icon", "$")
-	// detect enviorment
+	// default options
+	viper.SetDefault("icon", "$")
+	viper.SetDefault("style", "plaintext")
+	viper.SetDefault("seperateSegments", false)
+	viper.SetDefault("segmentSeperator","")
+	viper.SetDefault("colorBasedOnExitCode",false)
+	viper.SetDefault("showSomethingBeforePrompt",false)
+	viper.SetDefault("somethingBeforePrompt","")
+	err := viper.Unmarshal(&c)
+	if err != nil {
+		fmt.Println("Unable to decode config")
+	}
+	// detect env
 	os = runtime.GOOS
 	switch os{
 		case "windows":
@@ -64,7 +91,7 @@ func use(vals ...interface{}){
         _ = val
     }
 }
-func prompt(osLogo string) {
+func prompt() {
 	// FG colors
 	red := color.FgRed.Render
 	green := color.FgGreen.Render
@@ -86,23 +113,21 @@ func prompt(osLogo string) {
 		osSym = bgCyan(white(" "+osLogo+" "))
 	}
 	// render prompt
-	var prompt string
-	prompt = cyan("")
-	if(viper.Get("prompt.segments.os" == true){
+	if(c.showSomethingBeforePrompt){
+	    prompt = cyan(string(c.somethingBeforePrompt))
+	}
+	if(viper.Get("segments.os" == true){
 		prompt = prompt + osSym
 	}
-	if(viper.Get("prompt.segments.cwd") == true){
+	if(viper.Get("segments.cwd") == true){
 		cwd , _ := os.Getwd()
 		homeVar := viper.Get("HOME")
 		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
 	}
-	// icon
-	var icon string = viper.GetString("prompt.icon")
-	exitCode := viper.GetBool("prompt.options.exitCode")
 	code := viper.Get("?")
 	var lastExitCode string = code.(string)
-	if(exitCode != false){
-		if(runtime.GOOS == "windows"){
+	if(c.colorBasedOnExitCode != false){
+		if(os == "windows"){
 			if(code = "False"){
 				prompt = prompt + "" + red(icon) + ""
 			}
