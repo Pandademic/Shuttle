@@ -128,7 +128,7 @@ func prompt() {
 	var lastExitCode string = string(code)
 	if(c.colorBasedOnExitCode){
 		if(os == "windows"){
-			if(code = "False"){
+			if(code == "False"){
 				prompt = prompt + "" + red(icon) + ""
 			}
 			else {
