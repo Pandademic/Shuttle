@@ -56,14 +56,12 @@ func main() {
 	switch platform{
 		case "windows":
 			osLogo = ""
-			prompt(osLogo)
 		case "darwin":
 			osLogo = ""
-			prompt(osLogo)
 		case "linux":
 			osLogo = ""
-			prompt(osLogo)
 	}
+	prompt()
 }
 func trimPath(cwd, home string) string {
 	var path string
