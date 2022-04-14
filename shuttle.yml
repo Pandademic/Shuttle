@@ -1,12 +1,11 @@
 prompt:
    style: "plaintext"
    icon: ">"
+   seperateSegments: false
+   segmentSeperator: "this string won't be used at all , since seoerateSegents is false"
+   colorBasedOnExitCode: false
+   # show the prompt icon as red if the last code was non-zero , or $? is False in powershell(windows)
    segments:
         os: true
-        user : false
+        user : true
         cwd : true
-   options:
-        exitCode: true
-        # :arrow_up: show prompt icon red if last exit code is non zero
-        segSept : false
-        # show a seperator between segments

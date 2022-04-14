@@ -8,6 +8,10 @@ import (
      "os"
     "github.com/gookit/color" 	
 )
+var(
+  osLogo string
+  os string
+)
 func main() {
 	//configure before anything
 	viper.AutomaticEnv()
@@ -16,22 +20,21 @@ func main() {
 	// paths to look for the config file in
 	viper.AddConfigPath(".")   
 	viper.AddConfigPath("$HOME")  
-	viper.AddConfigPath("$HOME/.shuttle")
 	viper.AddConfigPath("$HOME/.config")
 	viper.AddConfigPath("$HOME/.config/shuttle")
 	viper.ReadInConfig() // Find and read the config file
 	viper.SetDefault("prompt.icon", "$")
 	// detect enviorment
-	var os string = runtime.GOOS
+	os = runtime.GOOS
 	switch os{
 		case "windows":
-			var osLogo string= ""
+			osLogo = ""
 			prompt(osLogo)
 		case "darwin":
-			var osLogo string= ""
+			osLogo = ""
 			prompt(osLogo)
 		case "linux":
-			var osLogo string= ""
+			osLogo = ""
 			prompt(osLogo)
 	}
 }
@@ -40,8 +43,7 @@ func trimPath(cwd, home string) string {
 	if strings.HasPrefix(cwd, home) {
 		path = "~" + strings.TrimPrefix(cwd, home)
 	} else {
-		// If path doesn't contain $HOME, return the
-		// entire path as is.
+		// If path doesn't contain $HOME, return the entire path as is.
 		path = cwd
 		return path
 	}
@@ -57,7 +59,7 @@ func trimPath(cwd, home string) string {
 	}
 	return filepath.Join(truncItems...)
 }
-func use(vals ...interface{}) {
+func use(vals ...interface{}){
     for _, val := range vals {
         _ = val
     }
@@ -76,8 +78,7 @@ func prompt(osLogo string) {
 	bgCyan := color.BgCyan.Render
 	bgWhite := color.BgWhite.Render
 	bgBlue := color.BgBlue.Render
-	// create a symbol
-	use(red,blue,bgGreen,bgWhite,green) // dont complain about unused colors
+	use(red,blue,bgGreen,bgWhite,green) // don`t complain about unused colors
 	osSym := bgRed(white(" "+osLogo+" "))
 	if(osLogo == ""){
 		osSym = bgBlue(white(" "+osLogo+" "))
