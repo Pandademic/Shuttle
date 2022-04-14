@@ -123,7 +123,6 @@ func deploy() {
 		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
 	}
 	code := os.Getenv("?")
-	var lastExitCode string = string(code)
 	if(c.colorBasedOnExitCode){
 		if(platform == "windows"){
 			if(code == "False"){
@@ -132,7 +131,7 @@ func deploy() {
 				prompt = prompt + "" + c.icon + "  "
 			}
 		}else{
-			if(code != 0){
+			if(code != "0"){
 				prompt = prompt + "" + red(c.icon) + "  "
 			}else {
 			    prompt = prompt + "" + c.icon + "  "
