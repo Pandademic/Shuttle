@@ -10,19 +10,19 @@ import (
 )
 // runtime variables
 var(
-  osLogo string
-  os string 
-  prompt string	
+  osLogo string = ""
+  os string = ""
+  prompt string	 = ""
 )
 // config type
 type config struct{
-  icon string,
-  style string,
-  seperateSegments bool,
-  segmentSeperator string,
+  icon string
+  style string
+  seperateSegments bool
+  segmentSeperator string
   colorBasedOnExitCode bool,
-  showSomethingBeforePrompt bool,
-  somethingBeforePrompt string,
+  showSomethingBeforePrompt bool
+  somethingBeforePrompt string
 )
 // config instance
 var(
