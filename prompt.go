@@ -119,8 +119,8 @@ func deploy() {
 	}
 	if(viper.Get("segments.cwd") == true){
 		cwd , _ := os.Getwd()
-		homeVar := viper.Get("HOME")
-		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
+		homeVar := os.Getenv("HOME")
+		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,string(homeVar)+" ")))
 	}
 	code := os.Getenv("?")
 	if(c.colorBasedOnExitCode){
