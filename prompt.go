@@ -124,9 +124,9 @@ func prompt() {
 		homeVar := viper.Get("HOME")
 		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))
 	}
-	code := viper.Get("?")
-	var lastExitCode string = code.(string)
-	if(c.colorBasedOnExitCode != false){
+	code := os.Getenv("?")
+	var lastExitCode string = string(code)
+	if(c.colorBasedOnExitCode){
 		if(os == "windows"){
 			if(code = "False"){
 				prompt = prompt + "" + red(icon) + ""
