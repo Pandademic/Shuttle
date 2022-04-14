@@ -114,7 +114,7 @@ func deploy() {
 	if(c.showSomethingBeforePrompt){
 	    prompt = cyan(string(c.somethingBeforePrompt))
 	}
-	if(viper.Get("segments.os" == true)){
+	if(viper.Get("segments.os") == true){
 		prompt = prompt + osSym
 	}
 	if(viper.Get("segments.cwd") == true){
@@ -127,19 +127,19 @@ func deploy() {
 	if(c.colorBasedOnExitCode){
 		if(platform == "windows"){
 			if(code == "False"){
-				prompt = prompt + "" + red(icon) + ""
+				prompt = prompt + "" + red(c.icon) + ""
 			}else{
-				prompt = prompt + "" + icon + "  "
+				prompt = prompt + "" + c.icon + "  "
 			}
 		}else{
 			if(code != 0){
-				prompt = prompt + "" + red(icon) + "  "
+				prompt = prompt + "" + red(c.icon) + "  "
 			}else {
-			    prompt = prompt + "" + icon + "  "
+			    prompt = prompt + "" + c.icon + "  "
 			}
 		}
 	}else{
-		prompt = prompt + "" + icon + "  "
+		prompt = prompt + "" + c.icon + "  "
 	}
 	// print it out
 	fmt.Println(prompt)
