@@ -20,7 +20,7 @@ type config struct{
   style string
   seperateSegments bool
   segmentSeperator string
-  colorBasedOnExitCode bool,
+  colorBasedOnExitCode bool
   showSomethingBeforePrompt bool
   somethingBeforePrompt string
 )
