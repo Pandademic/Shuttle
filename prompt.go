@@ -34,10 +34,10 @@ func main() {
 	viper.SetConfigName("shuttle")
 	viper.SetConfigType("yaml") 
 	// paths to look for the config file in
-	viper.AddConfigPath(".")   
-	viper.AddConfigPath("$HOME")  
-	viper.AddConfigPath("$HOME/.config")
 	viper.AddConfigPath("$HOME/.config/shuttle")
+	viper.AddConfigPath("$HOME/.config")
+	viper.AddConfigPath("$HOME")
+	viper.AddConfigPath(".")
 	viper.ReadInConfig() // Find and read the config file
 	// default options
 	viper.SetDefault("icon", "$")
