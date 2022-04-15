@@ -105,9 +105,9 @@ func deploy() {
 	bgBlue := color.BgBlue.Render
 	use(red,blue,bgGreen,bgWhite,green) // don`t complain about unused colors
 	osSym := bgRed(white(" "+osLogo+" "))
-	if(osLogo == ""){
+	if(platform == "windows"){
 		osSym = bgBlue(white(" "+osLogo+" "))
-	}else if(osLogo == ""){
+	}else if(platform == "linux"){
 		osSym = bgCyan(white(" "+osLogo+" "))
 	}
 	// render prompt
