@@ -8,35 +8,60 @@ import (
      "os"
     "github.com/gookit/color" 	
 )
+// runtime variables
 var(
-  osLogo string
-  os string
+  osLogo string = ""
+  platform string = ""
+  prompt string	 = ""
 )
+// config type
+type config struct{
+  icon string
+  style string
+  seperateSegments bool
+  segmentSeperator string
+  colorBasedOnExitCode bool
+  showSomethingBeforePrompt bool
+  somethingBeforePrompt string
+}
+// config instance
+var(
+   c config	
+)		
 func main() {
 	//configure before anything
 	viper.AutomaticEnv()
 	viper.SetConfigName("shuttle")
 	viper.SetConfigType("yaml") 
 	// paths to look for the config file in
-	viper.AddConfigPath(".")   
-	viper.AddConfigPath("$HOME")  
-	viper.AddConfigPath("$HOME/.config")
 	viper.AddConfigPath("$HOME/.config/shuttle")
+	viper.AddConfigPath("$HOME/.config")
+	viper.AddConfigPath("$HOME")
+	viper.AddConfigPath(".")
 	viper.ReadInConfig() // Find and read the config file
-	viper.SetDefault("prompt.icon", "$")
-	// detect enviorment
-	os = runtime.GOOS
-	switch os{
+	// default options
+	viper.SetDefault("icon", "$")
+	viper.SetDefault("style", "plaintext")
+	viper.SetDefault("seperateSegments", false)
+	viper.SetDefault("segmentSeperator","")
+	viper.SetDefault("colorBasedOnExitCode",false)
+	viper.SetDefault("showSomethingBeforePrompt",false)
+	viper.SetDefault("somethingBeforePrompt","")
+	err := viper.Unmarshal(&c)
+	if err != nil {
+		fmt.Println("Unable to decode config")
+	}
+	// detect env
+	platform = runtime.GOOS
+	switch platform{
 		case "windows":
 			osLogo = ""
-			prompt(osLogo)
 		case "darwin":
 			osLogo = ""
-			prompt(osLogo)
 		case "linux":
 			osLogo = ""
-			prompt(osLogo)
 	}
+	deploy()
 }
 func trimPath(cwd, home string) string {
 	var path string
@@ -64,7 +89,7 @@ func use(vals ...interface{}){
         _ = val
     }
 }
-func prompt(osLogo string) {
+func deploy() {
 	// FG colors
 	red := color.FgRed.Render
 	green := color.FgGreen.Render
@@ -80,25 +105,41 @@ func prompt(osLogo string) {
 	bgBlue := color.BgBlue.Render
 	use(red,blue,bgGreen,bgWhite,green) // don`t complain about unused colors
 	osSym := bgRed(white(" "+osLogo+" "))
-	if(osLogo == ""){
+	if(platform == "windows"){
 		osSym = bgBlue(white(" "+osLogo+" "))
-	}else if(osLogo == ""){
+	}else if(platform == "linux"){
 		osSym = bgCyan(white(" "+osLogo+" "))
 	}
 	// render prompt
-	var prompt string
-	prompt = cyan("")
-	if(viper.Get("prompt.segments.os" == true){
+	if(c.showSomethingBeforePrompt){
+	    prompt = cyan(string(c.somethingBeforePrompt))
+	}
+	if(viper.Get("segments.os") == true){
 		prompt = prompt + osSym
 	}
-	if(viper.Get("prompt.segments.cwd") == true){
+	if(viper.Get("segments.cwd") == true){
 		cwd , _ := os.Getwd()
-		homeVar := viper.Get("HOME")
-		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,homeVar.(string))+" "))\
+		homeVar := os.Getenv("HOME")
+		prompt = prompt + bgYellow(white(" :"+""+trimPath(cwd,string(homeVar)+" ")))
 	}
-	// icon
-	var icon string = viper.GetString("prompt.icon")
-	prompt = prompt + "" + cyan(icon) + "  "
+	code := os.Getenv("?")
+	if(c.colorBasedOnExitCode){
+		if(platform == "windows"){
+			if(code == "False"){
+				prompt = prompt + "" + red(c.icon) + ""
+			}else{
+				prompt = prompt + "" + c.icon + "  "
+			}
+		}else{
+			if(code != "0"){
+				prompt = prompt + "" + red(c.icon) + "  "
+			}else {
+			    prompt = prompt + "" + c.icon + "  "
+			}
+		}
+	}else{
+		prompt = prompt + "" + c.icon + "  "
+	}
 	// print it out
 	fmt.Println(prompt)
 }

@@ -1,11 +1,13 @@
-prompt:
-   style: "plaintext"
-   icon: ">"
-   seperateSegments: false
-   segmentSeperator: "this string won't be used at all , since seoerateSegents is false"
-   colorBasedOnExitCode: false
-   # show the prompt icon as red if the last code was non-zero , or $? is False in powershell(windows)
-   segments:
-        os: true
-        user : true
-        cwd : true
+style: "plaintext"
+icon: ">"
+seperateSegments: false
+segmentSeperator: "this string won't be used at all , since separateSegents is false"
+# if seperateSegemnts is true , the seperator will be printed in cyan!!
+colorBasedOnExitCode: false
+# show the prompt icon as red if the last code was non-zero , or $? is False in powershell(windows)
+showSomethingBeforePrompt: false
+somethingBeforePrompt: "this string won't be used at all , since showSomethingBeforePrompt is false"
+segments:
+  os: true
+  user : true
+  cwd : true
