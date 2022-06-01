@@ -2,7 +2,7 @@ package libshuttle
 
 type optionConfig struct {
 	ShowHostName string `mapstructure:"showHostname"`
-  ShowUserName string `mapstructure:"showUserName"`
+  	ShowUserName string `mapstructure:"showUserName"`
 	Layout string `mapstructure:"layout"`
 	ShowTime string `mapstructure:"showTime"`
 }
@@ -10,7 +10,7 @@ type optionConfig struct {
 
 type promptConfig struct {
 	Icon string `mapstructure:"icon"`
-  BackgroundColor string `mapstructure:"bgColor"`
+ 	BackgroundColor string `mapstructure:"bgColor"`
 }
 
 
