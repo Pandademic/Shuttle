@@ -1,6 +1,6 @@
-module github.com/Pandademic/Shuttle
+module github.com/pandademic/shuttle
 
-go 1.17
+go 1.18
 
 require github.com/subosito/gotenv v1.2.0
 
