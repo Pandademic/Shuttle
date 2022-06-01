@@ -7,18 +7,24 @@ The >200 SLOC customizal fully cross platform inter planetary prompt without a l
 
 * less than 200 SLOC
 * compiles to a ~4.5 MB binary (5.456 MB actually)
-* customize with a simple YAML file defing prompt params. Seriously , here's mine:
-```yml
-prompt:
-  symbol: "▲"
-  showOs: false
-  truncateDirs: true
-  style: plaintext
+* customize with a simple TOML file defing prompt params. 
+
+Seriously.
+
+```toml
+[prompt]
+icon = "▲"
+bgColor = "pink"
+
+[options]
+showUserName = true
+showHostName = true
+showTime = false
+layout = "user@machine"
 ```
-* writen in go and so can compile for **ANY** platform 
 
-* supports all *major* OS's
+# Licence
+----
 
-* can't get it to work for your shell? it's not very difficult to get it to work for starship's init system
-
+MIT
 
