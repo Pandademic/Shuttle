@@ -1,8 +1,10 @@
 # 👾 SHUTTLE
 -------------
 The >200 SLOC customizal fully cross platform inter planetary prompt without a line of shell script!
+<img width="670" alt="image" src="https://user-images.githubusercontent.com/74566464/176445958-70dfa987-e701-4318-84b8-170f07b24e1c.png">
 
-# ok , here at the features
+
+# ok , here are the features
 ----------
 
 * less than 200 SLOC
