@@ -1,5 +1,8 @@
 # 👾 SHUTTLE
 -------------
+
+> **FOR THE LATEST DEVELOPMENT CHECK THE v0.1-dev branch**
+
 The >200 SLOC customizal fully cross platform inter planetary prompt without a line of shell script!
 
 # ok , here at the features
